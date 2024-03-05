@@ -38,8 +38,10 @@ public class WarRunner{
             pCards.add(beginningDeck.deal());
             cCards.add(beginningDeck.deal());
         }
-        Deck playerDeck = new Deck(pCards);
-        Deck compDeck = new Deck(cCards);
+        Deck playerDeck = new Deck();
+        Deck compDeck = new Deck();
+        playerDeck.addToDeck(pCards);
+        compDeck.addToDeck(cCards);
         System.out.println("It's a war of cards!\nDeck sizes: " + playerDeck.size() + " (yours) vs. " + compDeck.size() + " (computer's)");
         while (!gameWon) {
             System.out.println("Press 'ENTER' to fight another battle or 'S' to shuffle your deck!");

@@ -40,9 +40,8 @@ public class Deck {
         shuffle();
     }
 
-    public Deck(List<Card> cards) {
-        this.cards = cards;
-        size = cards.size();
+    public Deck() {
+        cards = new ArrayList<Card>();
     }
 
 
