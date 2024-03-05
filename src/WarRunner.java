@@ -59,10 +59,10 @@ public class WarRunner{
                     System.out.println("It's a tie! Battle Again! \nYou and the computer each lay down 3 cards.");
                     if (compDeck.size() <= 4) {
                         gameWon = true;
-                        System.out.println("You won the war!! The computer ran out of cards!");
+                        System.out.println("The computer ran out of cards! You won the war!!");
                     } else if (playerDeck.size() <= 4) {
                         gameWon = true;
-                        System.out.println("The computer won the war!! You ran out of cards!");
+                        System.out.println("You ran out of cards! The computer won the war!!");
                     } else {
                         for (int i = 1; i <= 4; i++) {
                             player = playerDeck.deal();
