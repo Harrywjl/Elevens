@@ -40,6 +40,11 @@ public class Deck {
         shuffle();
     }
 
+    public Deck(List<Card> cards) {
+        this.cards = cards;
+        size = cards.size();
+    }
+
 
     /**
      * Determines if this deck is empty (no undealt cards).
@@ -57,6 +62,13 @@ public class Deck {
         return size;
     }
 
+
+    public void addToDeck(List<Card> list) {
+        for (int i = 0; i < list.size(); i++) {
+            cards.add(list.get(i));
+            size++;
+        }
+    }
     /**
      * Randomly permute the given collection of cards
      * and reset the size to represent the entire deck.
@@ -83,7 +95,8 @@ public class Deck {
             return null;
         }
         size--;
-        Card c = cards.get(size);
+        Card c = cards.remove(size);
+
         return c;
     }
 

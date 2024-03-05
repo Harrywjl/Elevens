@@ -32,46 +32,62 @@ public class WarRunner{
         boolean gameWon = false;
         Scanner scan = new Scanner(System.in);
         String inp = "";
-        int pCards = beginningDeck.size() / 2;
-        int cCards = beginningDeck.size() / 2;
-        System.out.println("It's a war of cards!\nDeck sizes: " + pCards + " (yours) vs. " + cCards + " (computer's)");
+        List<Card> pCards = new ArrayList<Card>();
+        List<Card> cCards = new ArrayList<Card>();
+        while (beginningDeck.size() > 0) {
+            pCards.add(beginningDeck.deal());
+            cCards.add(beginningDeck.deal());
+        }
+        Deck playerDeck = new Deck(pCards);
+        Deck compDeck = new Deck(cCards);
+        System.out.println("It's a war of cards!\nDeck sizes: " + playerDeck.size() + " (yours) vs. " + compDeck.size() + " (computer's)");
         while (!gameWon) {
             System.out.println("Press 'ENTER' to fight another battle or 'S' to shuffle your deck!");
             inp = scan.nextLine();
-            if (inp.equals("S")) {
-                beginningDeck.shuffle();
+            if (inp.toUpperCase().equals("S")) {
+                playerDeck.shuffle();
                 System.out.println("Your deck has been shuffled\n");
             } else {
-                int stake = 0;
-                Card player = beginningDeck.deal();
-                pCards--;
-                stake++;
-                Card computer = beginningDeck.deal();
-                cCards--;
-                stake++;
+                List<Card> stake = new ArrayList<Card>();
+                Card player = playerDeck.deal();
+                stake.add(player);
+                Card comp = compDeck.deal();
+                stake.add(comp);
                 System.out.println("You drew a " + player);
-                System.out.println("The computer drew a " + computer);
-                while (player.pointValue() == computer.pointValue()) {
+                System.out.println("The computer drew a " + comp);
+                while (player.pointValue() == comp.pointValue() && !gameWon) {
                     System.out.println("It's a tie! Battle Again! \nYou and the computer each lay down 3 cards.");
-                    for (int i = 1; i <= 4; i++) {
-                        player = beginningDeck.deal();
-                        computer = beginningDeck.deal();
+                    if (compDeck.size() <= 4) {
+                        gameWon = true;
+                        System.out.println("You won the war!! The computer ran out of cards!");
+                    } else if (playerDeck.size() <= 4) {
+                        gameWon = true;
+                        System.out.println("The computer won the war!! You ran out of cards!");
+                    } else {
+                        for (int i = 1; i <= 4; i++) {
+                            player = playerDeck.deal();
+                            comp = compDeck.deal();
+                            stake.add(player);
+                            stake.add(comp);
+                        }
+                        System.out.println("You drew a " + player);
+                        System.out.println("The computer drew a " + comp);
                     }
-                    System.out.println("You drew a " + player);
-                    System.out.println("The computer drew a " + computer);
                 }
-                if (player.pointValue() > computer.pointValue()) {
-                    pCards += stake;
-                    System.out.println("You won " + stake + " cards! Deck sizes: " + pCards + " (yours) vs. " + cCards + " (computer's)");
-                } else if (player.pointValue() < computer.pointValue()) {
-                    cCards += stake;
-                    System.out.println("The computer won " + stake + " cards! Deck sizes: " + pCards + " (yours) vs. " + cCards + " (computer's)");
+                if (player.pointValue() > comp.pointValue()) {
+                    playerDeck.addToDeck(stake);
+                    System.out.println("You won " + stake.size() + " cards! Deck sizes: " + playerDeck.size() + " (yours) vs. " + compDeck.size() + " (computer's)");
+                } else if (player.pointValue() < comp.pointValue()) {
+                    compDeck.addToDeck(stake);
+                    System.out.println("The computer won " + stake.size() + " cards! Deck sizes: " + playerDeck.size() + " (yours) vs. " + compDeck.size() + " (computer's)");
                 }
             }
-            if (cCards <= 0) {
+            if (compDeck.isEmpty()) {
+                gameWon = true;
                 System.out.println("You won the war!!");
             }
-            if (pCards <= 0) {
+            if (playerDeck.isEmpty()) {
+                gameWon = true;
                 System.out.println("The computer won the war!!");
             }
         }
