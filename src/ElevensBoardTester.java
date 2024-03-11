@@ -12,7 +12,7 @@ public class ElevensBoardTester {
             if (game.anotherPlayIsPossible()) {
                 ArrayList<Integer> selectedCards = new ArrayList<Integer>();
                 int in = -2;
-                System.out.println("Pick either a pair that have a combined value of 11 \nOR\n3 cards consisting of a jack, a queen, and a king in some order\n(Type the indices of the cards and type -1 when you're finished)");
+                System.out.println("Pick either a pair that have a combined value of 11 OR\n3 cards consisting of a jack, a queen, and a king in some order\n(Type the indices of the cards and type -1 when you're finished)");
                 while (in != -1) {
                     in = scan.nextInt();
                     List<Integer> valid = game.cardIndexes();
@@ -37,7 +37,7 @@ public class ElevensBoardTester {
                 System.out.println("Undealt cards: " + game.deckSize());
 
             } else {
-                System.out.println("No plays are possible. You lost! :(\n Starting a new game...");
+                System.out.println("No plays are possible. You lost! :(\nStarting a new game...");
                 game.newGame();
             }
         }

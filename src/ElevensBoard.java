@@ -16,13 +16,13 @@ public class ElevensBoard {
      * The ranks of the cards for this game to be sent to the deck.
      */
     private static final String[] RANKS =
-            {"ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king"};
+            {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
 
     /**
      * The suits of the cards for this game to be sent to the deck.
      */
     private static final String[] SUITS =
-            {"spades", "hearts", "diamonds", "clubs"};
+            {"♠", "♥", "♦", "♣"};
 
     /**
      * The values of the cards for this game to be sent to the deck.
@@ -152,7 +152,7 @@ public class ElevensBoard {
     public String toString() {
         String s = "";
         for (int k = 0; k < cards.length; k++) {
-            s = s + k + ": " + cards[k] + "\n";
+            s = s + "(" + k + "): " + cards[k] + "   ";
         }
         return s;
     }
@@ -191,13 +191,13 @@ public class ElevensBoard {
         int sum = 0;
         for (int i = 0; i < selectedCards.size(); i++) {
             sum += cards[selectedCards.get(i)].pointValue();
-            if (cards[selectedCards.get(i)].suit().equals("jack")) {
+            if (cards[selectedCards.get(i)].rank().equals("J")) {
                 j = true;
             }
-            if (cards[selectedCards.get(i)].suit().equals("queen")) {
+            if (cards[selectedCards.get(i)].rank().equals("Q")) {
                 q = true;
             }
-            if (cards[selectedCards.get(i)].suit().equals("king")) {
+            if (cards[selectedCards.get(i)].rank().equals("K")) {
                 k = true;
             }
         }
@@ -218,13 +218,13 @@ public class ElevensBoard {
         boolean k = false;
         ArrayList<Integer> pairs = new ArrayList<Integer>(Arrays.asList(1, 10, 2, 9, 3, 8, 4, 7, 5, 6));
         for (int i = 0; i < cards.length; i++) {
-            if (cards[i].suit().equals("jack")) {
+            if (cards[i].rank().equals("J")) {
                 j = true;
             }
-            if (cards[i].suit().equals("queen")) {
+            if (cards[i].rank().equals("Q")) {
                 q = true;
             }
-            if (cards[i].suit().equals("king")) {
+            if (cards[i].rank().equals("K")) {
                 k = true;
             }
             if (pairs.indexOf(cards[i].pointValue()) != -1) {
@@ -288,13 +288,13 @@ public class ElevensBoard {
         boolean q = false;
         boolean k = false;
         for (int i = 0; i < selectedCards.size(); i++) {
-            if (cards[selectedCards.get(i)].suit().equals("jack")) {
+            if (cards[selectedCards.get(i)].rank().equals("J")) {
                 j = true;
             }
-            if (cards[selectedCards.get(i)].suit().equals("queen")) {
+            if (cards[selectedCards.get(i)].rank().equals("Q")) {
                 q = true;
             }
-            if (cards[selectedCards.get(i)].suit().equals("king")) {
+            if (cards[selectedCards.get(i)].rank().equals("K")) {
                 k = true;
             }
         }
