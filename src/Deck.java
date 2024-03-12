@@ -32,7 +32,7 @@ public class Deck {
     public Deck(String[] ranks, String[] suits, int[] values) {
         cards = new ArrayList<Card>();
         for (int j = 0; j < ranks.length; j++) {
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < suits.length; i++) {
                 cards.add(new Card(ranks[j], suits[i], values[j]));
             }
         }
