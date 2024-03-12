@@ -37,7 +37,7 @@ public class ElevensBoardTester {
                 System.out.println("Undealt cards: " + game.deckSize());
 
             } else {
-                System.out.println("No plays are possible. You lost! :(\nStarting a new game...");
+                System.out.println("No plays are possible. You lost! :(\nReplacing cards on the board...");
                 game.newGame();
             }
         }

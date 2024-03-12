@@ -152,7 +152,11 @@ public class ElevensBoard {
     public String toString() {
         String s = "";
         for (int k = 0; k < cards.length; k++) {
-            s = s + "(" + k + "): " + cards[k] + "   ";
+            if (cards[k] != null) {
+                s = s + "(" + k + "): " + cards[k] + "   ";
+            } else {
+                s = s + "(" + k + "): " + null + "   ";
+            }
         }
         return s;
     }
@@ -218,17 +222,19 @@ public class ElevensBoard {
         boolean k = false;
         ArrayList<Integer> pairs = new ArrayList<Integer>(Arrays.asList(1, 10, 2, 9, 3, 8, 4, 7, 5, 6));
         for (int i = 0; i < cards.length; i++) {
-            if (cards[i].rank().equals("J")) {
-                j = true;
-            }
-            if (cards[i].rank().equals("Q")) {
-                q = true;
-            }
-            if (cards[i].rank().equals("K")) {
-                k = true;
-            }
-            if (pairs.indexOf(cards[i].pointValue()) != -1) {
-                pairs.set(pairs.indexOf(cards[i].pointValue()), 11);
+            if (cards[i] != null) {
+                if (cards[i].rank().equals("J")) {
+                    j = true;
+                }
+                if (cards[i].rank().equals("Q")) {
+                    q = true;
+                }
+                if (cards[i].rank().equals("K")) {
+                    k = true;
+                }
+                if (pairs.indexOf(cards[i].pointValue()) != -1) {
+                    pairs.set(pairs.indexOf(cards[i].pointValue()), 11);
+                }
             }
         }
         if (j && q && k) {
